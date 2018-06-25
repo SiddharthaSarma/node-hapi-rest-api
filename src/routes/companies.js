@@ -1,4 +1,4 @@
-import { getAllCompanies } from '../controller/company';
+import { getAllCompanies, getCompanyById } from '../controller/company';
 
 export const companyRoutes = [
   {
@@ -7,14 +7,25 @@ export const companyRoutes = [
     config: {
       description: 'Get companies',
       notes: 'Get the list of companies',
-      tags: ['api'], // ADD THIS TAG
+      tags: ['api'],
       async handler(req, res) {
         return new Promise(async resolve => {
           return resolve(await getAllCompanies(req, res));
         });
-      },
-      response: {
-        emptyStatusCode: 204
+      }
+    }
+  },
+  {
+    method: 'GET',
+    path: '/companies/{id}',
+    config: {
+      description: 'Get seleted company',
+      notes: 'Get a particular company',
+      tags: ['api'],
+      async handler(req, res) {
+        return new Promise(async resolve => {
+          return resolve(await getCompanyById(req, res));
+        });
       }
     }
   }
