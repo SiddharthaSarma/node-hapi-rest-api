@@ -48,3 +48,19 @@ export const getCompany = async id => {
     };
   }
 };
+export const deleteCompanyById = async id => {
+  let success = true;
+  let response = [];
+  try {
+    const companies = await Company.deleteOne({ _id: id }).exec();
+    response = companies;
+  } catch (err) {
+    success = false;
+    response = err;
+  } finally {
+    return {
+      success,
+      response
+    };
+  }
+};

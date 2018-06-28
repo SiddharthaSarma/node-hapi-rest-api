@@ -1,4 +1,8 @@
-import { getAllCompanies, getCompanyById } from '../controller/company';
+import {
+  getAllCompanies,
+  getCompanyById,
+  deleteCompany
+} from '../controller/company';
 
 export const companyRoutes = [
   {
@@ -25,6 +29,20 @@ export const companyRoutes = [
       async handler(req, res) {
         return new Promise(async resolve => {
           return resolve(await getCompanyById(req, res));
+        });
+      }
+    }
+  },
+  {
+    method: 'DELETE',
+    path: '/companies/{id}',
+    config: {
+      description: 'Delete company',
+      notes: 'Delete a particular company',
+      tags: ['api'],
+      async handler(req, res) {
+        return new Promise(async resolve => {
+          return resolve(await deleteCompany(req, res));
         });
       }
     }
